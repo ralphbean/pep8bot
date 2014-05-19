@@ -37,6 +37,9 @@ def main(global_config, **settings):
     # Make it so we can do "request.user" in templates.
     config.set_request_property(get_user, 'user', reify=True)
 
+    config.include('pyramid_mako')
+    config.add_mako_renderer('.mak', settings_prefix='mako.')
+
     config.include('velruse.providers.github')
     config.add_github_login_from_settings()
 
