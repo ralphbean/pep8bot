@@ -4,7 +4,7 @@
     <span class="span10 offset1 profile-header">
       <div class="photo-64"><img src="${w.user.avatar}&s=64" /></div>
       <h1>
-        ${w.user.username}
+        <a href="https://github.com/${w.user.username}">${w.user.username}</a>
         <small>${w.user.full_name} ${len(w.user.all_repos)} repos</small>
       </h1>
     </span>
