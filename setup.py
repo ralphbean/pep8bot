@@ -23,6 +23,9 @@ requires = [
     'redis',
     'mock',
 
+    # Other stuff above seems to need this, but doesn't declare it.
+    'six',
+
     # Required by the worker to do git commands
     'sh',
 
