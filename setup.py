@@ -18,11 +18,6 @@ requires = [
     'velruse',
     'alembic',
 
-    'requests <= 0.14.0',
-    # This breaks with the latest "requests"
-    # https://github.com/copitux/python-github3/issues/26
-    'pygithub3',
-
     # Retask, for communication between webapp and the worker
     'retask',
     'redis',
