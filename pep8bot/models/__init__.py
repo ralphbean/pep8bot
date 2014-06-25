@@ -21,6 +21,8 @@ from sqlalchemy.orm import (
 import pyramid.threadlocal
 import pep8bot.traversal
 import datetime
+import traceback
+
 from hashlib import md5
 from .jsonifiable import JSONifiable
 
@@ -64,12 +66,16 @@ class User(Base):
 
     def sync_repos(self):
         """ Ask github about what repos I have and cache that. """
-        if self.users:
-            # Then I am an organization, not a user.
-            gh_repos = gh.repos.list_by_org(self.username).all()
-        else:
-            # Then I am a real boy
-            gh_repos = gh.repos.list(self.username).all()
+        try:
+            if self.users:
+                # Then I am an organization, not a user.
+                gh_repos = gh.repos.list_by_org(self.username).all()
+            else:
+                # Then I am a real boy
+                gh_repos = gh.repos.list(self.username).all()
+        except Exception:
+            traceback.print_exc()
+            return
 
         # TODO -- fix this.  this is inefficient
         for repo in gh_repos:
